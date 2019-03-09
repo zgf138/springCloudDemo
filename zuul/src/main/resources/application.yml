@@ -1,0 +1,26 @@
+server:
+  port: 10010 #\u670D\u52A1\u7AEF\u53E3
+spring:
+  application:
+    name: api-gateway #\u6307\u5B9A\u670D\u52A1\u540D
+
+
+#zuul:
+  #routes:
+    #user-service:  # \u8FD9\u91CC\u662F\u8DEF\u7531id\uFF0C\u968F\u610F\u5199
+      #path: /service-goods/** # \u8FD9\u91CC\u662F\u6620\u5C04\u8DEF\u5F84
+      #serviceId: service-goods # \u6307\u5B9A\u670D\u52A1\u540D\u79F0
+#\u7CBE\u7B80\u7248\u914D\u7F6E(\u9ED8\u8BA4\u4E0D\u914D\u7F6E\u4E5F\u662F\u53EF\u4EE5\u7684,\u6620\u5C04\u5C31\u662F\u670D\u52A1\u5668\u5730\u5740)
+zuul:
+  #prefix: /api # \u6DFB\u52A0\u8DEF\u7531\u524D\u7F00
+  routes:
+    service-goods: /service-goods/** # \u8FD9\u91CC\u662F\u6620\u5C04\u8DEF\u5F84
+
+eureka:
+  client:
+    registry-fetch-interval-seconds: 5 # \u83B7\u53D6\u670D\u52A1\u5217\u8868\u7684\u5468\u671F\uFF1A5s
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+    ip-address: 127.0.0.1
