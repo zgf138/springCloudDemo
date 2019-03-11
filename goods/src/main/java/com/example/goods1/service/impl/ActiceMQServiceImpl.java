@@ -11,7 +11,7 @@ import javax.jms.*;
 public class ActiceMQServiceImpl implements IActiveMQService {
 
     @Override
-    public void sendMessage() throws JMSException {
+    public void sendMessage(String msg) throws JMSException {
         //1、创建 ActiveMQ 连接，设置 brokerURL
         ConnectionFactory connectionFactory =
                 new ActiveMQConnectionFactory("tcp://localhost:61616");
@@ -34,7 +34,7 @@ public class ActiceMQServiceImpl implements IActiveMQService {
 
         //6、创建消息 - 文本消息
         ActiveMQTextMessage message = new ActiveMQTextMessage();
-        message.setText("how are you?");
+        message.setText(msg);
         //7、发送文本消息
         messageProducer.send(message);
 
@@ -45,7 +45,7 @@ public class ActiceMQServiceImpl implements IActiveMQService {
     }
 
     @Override
-    public void consumeMessage() throws JMSException {
+    public String consumeMessage() throws JMSException {
         //1、创建 ActiveMQ 连接，设置 brokerURL
         ConnectionFactory connectionFactory =
                 new ActiveMQConnectionFactory("tcp://localhost:61616");
@@ -71,16 +71,18 @@ public class ActiceMQServiceImpl implements IActiveMQService {
 
         //7、获取消息
         Message message = consumer.receive(100);
-
+        String msg = "";
         if (message instanceof TextMessage) {
             TextMessage textMessage = (TextMessage) message;
             System.out.println("----------------------------------");
             System.out.println("消费消息：" + textMessage.getText());
+            msg = textMessage.getText();
         }
 
         //8、关闭消息发送者、Session、Connection
         consumer.close();
         session.close();
         connection.close();
+        return msg;
     }
 }

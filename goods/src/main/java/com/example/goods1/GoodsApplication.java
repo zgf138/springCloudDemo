@@ -31,13 +31,13 @@ public class GoodsApplication {
 
     @RequestMapping("/hi")
     public String home(@RequestParam String name) throws JMSException {
-        activeMQService.sendMessage();
+        activeMQService.sendMessage("hi I'm "+ name);
         return "hi " + name + ",i am from port:" + port;
     }
 
     @RequestMapping("/consume")
-    public void consume() throws JMSException {
-        activeMQService.consumeMessage();
+    public String consume() throws JMSException {
+        return activeMQService.consumeMessage();
     }
 
 }
