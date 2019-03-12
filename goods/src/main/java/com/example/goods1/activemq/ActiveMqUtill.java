@@ -1,12 +1,13 @@
 package com.example.goods1.activemq;
 
 
+import org.apache.activemq.ActiveMQConnectionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsMessagingTemplate;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
-import javax.jms.Destination;
+import javax.jms.*;
 
 
 @Component
@@ -31,6 +32,46 @@ public class ActiveMqUtill {
             e.printStackTrace();
         }
         return true;
+    }
+
+    public <T> boolean cresteQueue(T contents, String queue) throws JMSException {
+        Session session = cresteSession();
+        Destination destination =  session.createQueue(queue);
+        try {
+            jsmMessagingTemplate1.convertAndSend(destination, contents);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return true;
+    }
+
+    public <T> boolean cresteTopic(T contents, String topic) throws JMSException {
+        Session session = cresteSession();
+        Destination destination =  session.createTopic(topic);
+        try {
+            jsmMessagingTemplate1.convertAndSend(destination, contents);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return true;
+    }
+
+    public Session cresteSession() throws JMSException {
+        ConnectionFactory connectionFactory =
+                new ActiveMQConnectionFactory("tcp://localhost:61616");
+
+        //2、创建 JMS 连接
+        Connection connection = connectionFactory.createConnection();
+
+        //3、启动连接（这里需要手动启动）
+        connection.start();
+
+        //4、创建会话 Session（参数一 transacted：是否是事务  参数二：自动确认）
+        Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+
+        return session;
     }
 
 }

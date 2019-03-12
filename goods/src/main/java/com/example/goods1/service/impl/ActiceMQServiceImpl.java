@@ -64,7 +64,8 @@ public class ActiceMQServiceImpl implements IActiveMQService {
          * 第一种 Queue：点对点消息
          * 第二种 Topic：广播式消息
          */
-        Destination destination = session.createQueue("test");
+
+        Destination destination = session.createTopic("name");
 
         //6、创建消费者
         MessageConsumer consumer = session.createConsumer(destination);
