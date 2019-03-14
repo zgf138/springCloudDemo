@@ -31,4 +31,10 @@ public class SimpleConsumer {
             System.out.println(String.format("this is %s",i));
         }*/
     }
+
+    @org.springframework.kafka.annotation.KafkaListener(topics = "basic-log")
+    public void process(String content) {
+        //TODO
+        System.out.println("监听成功成功");
+    }
 }

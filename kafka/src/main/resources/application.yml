@@ -7,3 +7,11 @@ server:
 spring:
   application:
     name: service-kafka
+  kafka:
+    consumer:
+      enable-auto-commit: true
+      group-id: applog
+      auto-offset-reset: latest
+      bootstrap-servers: 192.168.0.15:9092
+
+topicName:  basic-log
