@@ -1,7 +1,7 @@
-package com.example.goods1;
+package com.example.goods;
 
 
-import com.example.goods1.service.IActiveMQService;
+import com.example.goods.service.IActiveMQService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package com.example.goods1;
+package com.example.goods;
 
 import java.util.Arrays;
 import java.util.Properties;
