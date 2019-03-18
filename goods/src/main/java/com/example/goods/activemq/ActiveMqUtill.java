@@ -1,4 +1,4 @@
-package com.example.goods1.activemq;
+package com.example.goods.activemq;
 
 
 import org.springframework.beans.factory.annotation.Autowired;

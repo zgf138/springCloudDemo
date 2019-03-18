@@ -1,6 +1,6 @@
-package com.example.goods1;
+package com.example.goods;
 
-import com.example.goods1.service.IActiveMQService;
+import com.example.goods.service.IActiveMQService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;

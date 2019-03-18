@@ -1,4 +1,4 @@
-package com.example.goods1.service;
+package com.example.goods.service;
 
 import javax.jms.JMSException;
 

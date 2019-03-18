@@ -1,6 +1,6 @@
-package com.example.goods1.service.impl;
+package com.example.goods.service.impl;
 
-import com.example.goods1.service.IActiveMQService;
+import com.example.goods.service.IActiveMQService;
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.activemq.command.ActiveMQTextMessage;
 import org.springframework.stereotype.Service;
